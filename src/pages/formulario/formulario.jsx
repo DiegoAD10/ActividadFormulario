@@ -1,6 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
+import App_alert from "../../components/alerts/alert";
 
 
 function Formulario() {
@@ -19,8 +20,8 @@ function Formulario() {
     const [tipoAlerta, setTipoAlerta] = useState("");
 
     function validarTexto(valor, nombre) {
-        if (valor.trim().lenght == 0) {
-            setMensajeAlerta("El" +nombre+ " no puede estar vacío.");
+        if (valor.trim().length == 0|| valor.trim().length >= 20|| valor.trim().length < 3) {
+            setMensajeAlerta("El " +nombre+ " no puede estar vacío y debe estar entre 3 y 20 carácteres.");
             setTipoAlerta("danger");
             setMostrarAlerta(true);
             return false;
@@ -44,6 +45,7 @@ function Formulario() {
 
     return(
         <>
+        <App_alert mostrarAlert={mostrarAlerta} cerrarAlert={() => setMostrarAlerta(false)} variant={tipoAlerta} msgAlert={mensajeAlerta}></App_alert>
         <h1>Formulario</h1>
 
         <div className="col-6">
