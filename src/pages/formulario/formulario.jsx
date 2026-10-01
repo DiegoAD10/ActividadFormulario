@@ -34,7 +34,12 @@ function Formulario() {
     function guardar() {
         if (validarTexto(txtNombre, "nombre") == false) {
             return;
-        }else{
+        }else if (validarTexto(txtApellido, "apellido")== false){
+            return;
+        }else if (validarTexto(txtRut, "rut")== false){
+            return;
+        }
+        else{
             console.log("Guardando");
             
         }
