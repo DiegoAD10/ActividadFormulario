@@ -5,6 +5,6 @@ import Formulario from './pages/formulario/formulario.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Formulario></Formulario>
+    <Formulario/>
   </StrictMode>,
 )

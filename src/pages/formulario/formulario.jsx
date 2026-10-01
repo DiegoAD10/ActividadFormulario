@@ -1,8 +1,44 @@
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 
 
 function Formulario() {
+
+    const [txtNombre, setTxtNombre] = useState("");
+    const [txtApellido, setTxtApellido] = useState("");
+    const [txtRut, setTxtRut] = useState("");
+    const [TxtDv, setTxtDv] = useState("");
+    const [txtFechaNac, setTxtFechaNac] = useState(Date);
+    const [TxtCorreo, setTxtCorreo] = useState("");
+    const [txtTelefono, setTxtTelefono] = useState("");
+    const [txtDireccion, setTxtDireccion] = useState("");
+
+    const [mostrarAlerta, setMostrarAlerta] = useState(false);
+    const [mensajeAlerta, setMensajeAlerta] = useState("");
+    const [tipoAlerta, setTipoAlerta] = useState("");
+
+    function validarTexto(valor, nombre) {
+        if (valor.trim().lenght == 0) {
+            setMensajeAlerta("El" +nombre+ " no puede estar vacío.");
+            setTipoAlerta("danger");
+            setMostrarAlerta(true);
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
+
+    function guardar() {
+        if (validarTexto(txtNombre, "nombre") == false) {
+            return;
+        }else{
+            console.log("Guardando");
+            
+        }
+        
+    }
 
 
 
@@ -51,7 +87,7 @@ function Formulario() {
         </div>
 
         <div className="col-3 mt-3">
-            <Button className='btnGuardar' variant="primary">Guardar</Button>
+            <Button onClick={guardar} className='btnGuardar' variant="outline-warning">Guardar</Button>
         </div>
 
     
