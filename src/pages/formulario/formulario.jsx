@@ -8,10 +8,10 @@ function Formulario() {
 
     const [txtNombre, setTxtNombre] = useState("");
     const [txtApellido, setTxtApellido] = useState("");
-    const [txtRut, setTxtRut] = useState("");
-    const [TxtDv, setTxtDv] = useState("");
+    const [txtRut, setTxtRut] = useState(0);
+    const [txtDv, setTxtDv] = useState("");
     const [txtFechaNac, setTxtFechaNac] = useState(Date);
-    const [TxtCorreo, setTxtCorreo] = useState("");
+    const [txtCorreo, setTxtCorreo] = useState("");
     const [txtTelefono, setTxtTelefono] = useState("");
     const [txtDireccion, setTxtDireccion] = useState("");
 
@@ -19,7 +19,7 @@ function Formulario() {
     const [mensajeAlerta, setMensajeAlerta] = useState("");
     const [tipoAlerta, setTipoAlerta] = useState("");
 
-    function validarTexto(valor, nombre) {
+    function validarNombre(valor, nombre) {
         if (valor.trim().length == 0|| valor.trim().length >= 20|| valor.trim().length < 3) {
             setMensajeAlerta("El " +nombre+ " no puede estar vacío y debe estar entre 3 y 20 carácteres.");
             setTipoAlerta("danger");
@@ -28,15 +28,44 @@ function Formulario() {
         }else{
             return true;
         }
-        
+    }
+
+    function validarTexto(valor, nombre) {
+        if (valor.trim().length == 0) {
+            setMensajeAlerta("El " +nombre+ " no puede estar vacío.");
+            setTipoAlerta("danger");
+            setMostrarAlerta(true);
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    function validarNumero(valor, nombre) {
+        if (valor < 0 || valor == 0 ) {
+            setMensajeAlerta("El " + nombre + " no debe ser menor o igual a cero.");
+            setTipoAlerta("danger");
+            setMostrarAlerta(true);
+            return false;
+        }else{
+            return true;
+        }
     }
 
     function guardar() {
-        if (validarTexto(txtNombre, "nombre") == false) {
+        if (validarNombre(txtNombre, "nombre") == false) {
             return;
         }else if (validarTexto(txtApellido, "apellido")== false){
             return;
-        }else if (validarTexto(txtRut, "rut")== false){
+        }else if (validarNumero(txtRut, "rut")== false){
+            return;
+        }else if (validarTexto(txtDv, "dv")== false){
+            return;
+        }else if (validarTexto(txtCorreo, "correo")== false){
+            return;
+        }else if (validarTexto(txtTelefono, "telefono")== false){
+            return;
+        }else if (validarTexto(txtDireccion, "direccion")== false){
             return;
         }
         else{
